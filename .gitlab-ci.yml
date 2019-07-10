@@ -2,10 +2,12 @@ stages:
   - test
   - build
 testing:
+  image: golang
   stage: test
   script:
     - go test
 building:
+  image: golang
   stage: build
   script:
     - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build hello.go
