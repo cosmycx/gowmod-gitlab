@@ -1,7 +1,7 @@
 stages:
   - test
   - build
-  - test web
+  - smoke test
 testing:
   image: golang
   stage: test
@@ -16,12 +16,12 @@ building:
     paths:
       - hello
 testing web:
-  stage: test web
+  stage: smoke test
   image: alpine
   script:
     - hello &
     - apk add --update \
       curl \
       && rm -rf /var/cache/apk/*
-    - sleep 3
+    - sleep 1
     - curl "http://localhost:8080" | tac | tac | grep -q "Hello, world."
