@@ -8,7 +8,6 @@ testing:
   script:
     - go test
     - sed -i "s/%%VERSION%%/$CI_COMMIT_SHORT_SHA/" ./hello.go
-    - cat hello.go
 building:
   image: golang
   stage: build
@@ -25,5 +24,5 @@ testing web:
     - apk add --update curl && rm -rf /var/cache/apk/*
     - sleep 1
     - curl "http://localhost:8080" | tac | tac | grep -q "Hello, world."
-    - curl "http://localhost:8080/version" | tac | tac | grep -q "$CI_COMMIT_SHORT_SHA"
+ 
 
