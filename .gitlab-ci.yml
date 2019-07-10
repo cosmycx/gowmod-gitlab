@@ -20,5 +20,8 @@ testing web:
   image: alpine
   script:
     - hello &
+    - apk add --update \
+      curl \
+      && rm -rf /var/cache/apk/*
     - sleep 3
     - curl "http://localhost:8080" | tac | tac | grep -q "Hello, world."
