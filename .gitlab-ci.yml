@@ -16,6 +16,7 @@ building:
     paths:
       - hello
 testing web:
+  stage: test web
   image: alpine
   script:
     - hello &
