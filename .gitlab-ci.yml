@@ -21,4 +21,4 @@ testing web:
   script:
     - hello &
     - sleep 3
-    - curl "http://localhost:8080" | grep -q "Hello, world."
+    - curl "http://localhost:8080" | tac | tac | grep -q "Hello, world."
