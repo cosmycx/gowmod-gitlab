@@ -7,6 +7,7 @@ testing:
   stage: test
   script:
     - go test
+    - sed -i "s/%%VERSION%%/$CI_COMMIT_SHORT_SHA/" ./hello.go
 building:
   image: golang
   stage: build
@@ -20,8 +21,6 @@ testing web:
   image: alpine
   script:
     - hello &
-    - apk add --update \
-      curl \
-      && rm -rf /var/cache/apk/*
+    - apk add --update curl && rm -rf /var/cache/apk/*
     - sleep 1
     - curl "http://localhost:8080" | tac | tac | grep -q "Hello, world."
