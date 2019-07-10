@@ -1,6 +1,7 @@
 stages:
   - test
   - build
+  - test web
 testing:
   image: golang
   stage: test
@@ -11,3 +12,10 @@ building:
   stage: build
   script:
     - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build hello.go
+  artifacts:
+    - hello
+testing web:
+  image: alpine
+  script:
+    - hello &
+    - curl "http://localhost:8080" | grep -q "Hello, world."
