@@ -18,4 +18,5 @@ testing web:
   image: alpine
   script:
     - hello &
+    - sleep 3
     - curl "http://localhost:8080" | grep -q "Hello, world."
