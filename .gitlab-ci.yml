@@ -12,15 +12,15 @@ building:
   image: golang
   stage: build
   script:
-    - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build hello.go
+    - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o build/hello hello.go
   artifacts:
     paths:
-      - hello
+      - build/
 testing web:
   stage: smoke test
   image: alpine
   script:
-    - hello &
+    - build/hello &
     - apk add --update curl && rm -rf /var/cache/apk/*
     - sleep 1
     - curl "http://localhost:8080" | tac | tac | grep -q "Hello, world."
