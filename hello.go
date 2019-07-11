@@ -11,6 +11,7 @@ func main() {
 	http.HandleFunc("/", home)
 	http.HandleFunc("/version", version)
 
+    fmt.Println("Starting server at 8080")
 	http.ListenAndServe(":8080", nil)
 } // .main
 
